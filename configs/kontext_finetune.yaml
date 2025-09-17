@@ -1,0 +1,75 @@
+# 扩散模型训练配置文件
+
+# 模型路径配置
+model_directory: &model_dir "/path/to/your/kontext"
+devices: '0,1,2,3,4,5,6,7'
+
+# 训练参数配置
+training_parameters:
+  precision_mode: bf16
+  gradient_accumulation: 8
+  num_train_epochs: 2
+  optimizer:
+    learning_rate: 1.0e-4
+    weight_decay: 0.01
+    beta1: 0.9
+    beta2: 0.99
+
+  logging:
+    log_frequency: 500
+    checkpoint_frequency: 1000
+    validate_on_checkpoint: True
+  gradient_checkpointing: true
+  max_gradient_norm: 1.0
+  log_dir: ${logdir:''}
+  log_image_cfg:
+    steps: 22
+  guidance:
+    training_scale: 1.0
+    inference_scale: 5.5
+  max_sequence_length: 256
+  adapter:
+    use_lora: True
+    lora_rank: 64
+  coto:
+    coto_total_steps: 2000
+  adaptive_sampling:
+    initial_sampling_weights: './extra_data/init_importance_weights.npy'
+
+# 训练器配置
+model_trainer:
+  target: scripts.kontext_finetune.ContextTrainer
+  params:
+    model_directory: *model_dir
+    scheduler_config:
+      target: diffusers.FlowMatchEulerDiscreteScheduler
+      params:
+        "num_train_timesteps": 1000
+        "shift": 3.0
+        "base_image_seq_len": 256
+        "base_shift": 0.5
+        "max_image_seq_len": 4096
+        "max_shift": 1.15
+        "use_dynamic_shifting": true
+
+# 数据集配置
+datasets:
+  training:
+    target: src.datasets.kontext.T2I
+    params:
+      dataset_dir: '/path/to/hub_fca_finetune'
+      sample_file: 'train_list_9-11.jsonl'
+      img_dir: '/path/to/imgdir'
+      target_resolution_multiplier: 1.2
+    workers: 8
+    batch_size: 1
+
+  validation:
+    target: src.datasets.kontext.T2I
+    params:
+      dataset_dir: '/path/to/hub_fca_finetune'
+      sample_file: 'val_list_9-11.jsonl'
+      img_dir: '/path/to/imgdir'
+      target_resolution_multiplier: 1.2
+    workers: 8
+    batch_size: 1
