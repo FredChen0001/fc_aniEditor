@@ -36,6 +36,11 @@ pip install -r requirements.txt
 
 5. Hardware Environment
 - 8×80GB GPUs
+6. run command
+```bash
+cd fc_aniEditor
+python -m accelerate.commands.launch --config_file configs/accelerate_config.yaml entrance.py -g configs/kontext_finetune.yaml
+```
 ### 📁 Directory Structure
 ```
 fc_aniEditor/

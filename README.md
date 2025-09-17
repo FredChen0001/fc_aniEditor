@@ -24,7 +24,6 @@ cd fc_aniEditor
 
 2. 安装Python依赖
 ```bash
-bash
 pip install -r requirements.txt
 ```
 3. 准备数据
@@ -33,6 +32,12 @@ pip install -r requirements.txt
 - https://huggingface.co/black-forest-labs/FLUX.1-Kontext-dev
 5. 硬件测试环境
 - 8*80G GPUs
+6. 运行命令
+```bash
+cd fc_aniEditor
+python -m accelerate.commands.launch --config_file configs/accelerate_config.yaml entrance.py -g configs/kontext_finetune.yaml
+```
+
 ### 📁 目录结构
 ```
 fc_aniEditor/
