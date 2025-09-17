@@ -14,7 +14,8 @@ To maintain technological cutting-edge, this project will actively follow the dy
 - [✓] Flux Kontext multi-condition training code
 - [✓] Dataset upload completed
 - [ ] ComfyUI deployment code
-- [ ] Flux RL code
+- [ ] Flux reinforcement learning code
+- [ ] Flux Kontext Multi-Image Conditional Editing Dataset
 ### 📦 Installation Steps
 
 1. Clone the repository
