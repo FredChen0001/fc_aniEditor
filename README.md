@@ -5,68 +5,71 @@
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.6-blue)](https://pytorch.org/)
 
 ## [中文版](README.md) | [English](README_EN.md)
-## 📖 项目概述
-本项目致力于将前沿的开源图像/视频生成与编辑技术与动漫领域深度融合，打造一个集研究、训练与应用为一体的开源平台。我们通过统一的代码框架整合了多种开源图像与视频编辑模型的训练实现，持续追踪最新技术进展并积累优化训练技巧；同时提供精心策划的中等规模动漫图像微调数据集，用于模型训练与验证。此外，项目还包含ComfyUI工作流等多种部署方案，全面展示与应用最新的开源技术成果。
+## 📖 Project Overview
+This project is dedicated to deeply integrating cutting-edge open-source image/video generation and editing technologies with the anime domain, creating an open-source platform that integrates research, training, and application. We have integrated the training implementations of various open-source image and video editing models through a unified code framework, continuously tracking the latest technological advancements and accumulating optimized training techniques. Additionally, the project provides a carefully curated medium-scale anime image fine-tuning dataset for model training and validation. Moreover, it includes various deployment solutions such as ComfyUI workflows to comprehensively demonstrate and apply the latest open-source technological achievements.
 
-为保持技术前沿性，本项目将积极跟进开源社区动态，基础模型会随主流开源模型的演进不断更新，训练策略也会依据最新研究成果持续优化。因此，代码结构可能会随之调整，不保证版本的完全向前兼容。
+To maintain technological cutting-edge, this project will actively follow the dynamics of the open-source community. The base models will be continuously updated with the evolution of mainstream open-source models, and training strategies will be continuously optimized based on the latest research results. Therefore, the code structure may be adjusted accordingly, and complete forward compatibility of versions is not guaranteed.
+
 ### 🚧 TODO
-- [✓] Flux Kontext 多条件 训练代码
-- [✓] 数据集上传完毕
-- [ ] Comfyui 部署代码
-- [ ] Flux 强化学习训练代码
-- [ ] Flux Kontext 多图片条件编辑数据集
-### 📦 安装步骤
+- [✓] Flux Kontext multi-condition training code
+- [✓] Dataset upload completed
+- [ ] ComfyUI deployment code
+- [ ] Flux reinforcement learning code
+- [ ] Flux Kontext Multi-Image Conditional Editing Dataset
+### 📦 Installation Steps
 
-1. 克隆项目仓库
+1. Clone the repository
 ```bash
 git clone https://github.com/FredChen0001/fc_aniEditor.git
 cd fc_aniEditor
 ```
 
-2. 安装Python依赖
+2. Install Python dependencies
 ```bash
 pip install -r requirements.txt
 ```
-3. 准备数据
+
+3. Prepare data
 - [AniEditor](..%2Fdataset%2FREADME.md)
-4. 准备Flux Kontext模型权重
+
+4. Prepare Flux Kontext model weights
 - https://huggingface.co/black-forest-labs/FLUX.1-Kontext-dev
-5. 硬件测试环境
-- 8*80G GPUs
-6. 运行命令
+
+5. Hardware Environment
+- 8×80GB GPUs
+6. run command
 ```bash
 cd fc_aniEditor
 python -m accelerate.commands.launch --config_file configs/accelerate_config.yaml entrance.py -g configs/kontext_finetune.yaml
 ```
-
-### 📁 目录结构
+### 📁 Directory Structure
 ```
 fc_aniEditor/
-├── ComfyUI/ # ComfyUI 部署代码
-├── configs/ # 设置实验参数
-├── dataset/ # AniEditor 数据集
-├── extra_data/ # 模型训练需要的辅助数据
-├── logs/ # 训练过程打印的中间结果、保存的权重文件
-├── scripts/ # 训练的脚本
+├── ComfyUI/ # ComfyUI deployment code
+├── configs/ # Experimental parameter settings
+├── dataset/ # AniEditor dataset
+├── extra_data/ # Auxiliary data required for model training
+├── logs/ # Intermediate results printed during training, saved weight files
+├── scripts/ # Training scripts
 ├── src/
-│   ├── datasets/ # 数据集代码
-│   ├── models/ # 各种模型代码
-│   └── utils/ # 各种工具代码
-├── tried_tricks/ # 训练技巧总结
-├── entrance/ # 程序入口
+│   ├── datasets/ # Dataset code
+│   ├── models/ # Various model codes
+│   └── utils/ # Various utility codes
+├── tried_tricks/ # Summary of training techniques
+├── entrance/ # Program entry
 ├── LICENSE
 └── README.md
 ```
 
-### 📄 许可证
-本项目采用MIT许可证 - 详见LICENSE文件。
+### 📄 License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-### 📞 联系方式
-如有问题或建议，请通过以下方式联系：
+### 📞 Contact
+For questions or suggestions, please contact us via:
 
-邮箱: [fredchen0001@163.com]
+Email: fredchen0001@163.com
 
-### 如果您在研究中使用了本代码，请引用以下文献：
+### If you use this code in your research, please cite the following papers:
 ```
 @misc{AniEditor2025,
   author       = {FredChen0001},
